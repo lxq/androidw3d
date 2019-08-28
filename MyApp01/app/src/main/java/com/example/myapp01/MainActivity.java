@@ -2,6 +2,7 @@ package com.example.myapp01;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.View;
@@ -36,6 +37,16 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             Toast.makeText(getApplicationContext(), "点击事件", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    // start service
+    public void startService(View v) {
+        startService(new Intent(getBaseContext(), MyService.class));
+    }
+
+    // stop service
+    public void stopService(View v) {
+        stopService(new Intent(getBaseContext(), MyService.class));
     }
 
     // Activity即将可见时调用
