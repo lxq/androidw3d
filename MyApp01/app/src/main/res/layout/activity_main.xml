@@ -21,6 +21,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="事件" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnStartService"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="startService"
+                android:text="启动服务" />
+
+            <Button
+                android:id="@+id/btnStopService"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="stopService"
+                android:text="停止服务" />
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
