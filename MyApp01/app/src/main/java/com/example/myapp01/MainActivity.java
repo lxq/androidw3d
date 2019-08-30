@@ -2,12 +2,14 @@ package com.example.myapp01;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.SearchManager;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
         Log.d(mAndroid, "onCreate()");
     }
 
-    // 内部类，实现按钮事件
+    // 内部类，实现按钮事件。
+    // 这种方式用得很少。
     class BtnClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
@@ -125,5 +128,25 @@ public class MainActivity extends AppCompatActivity {
                         + c.getString(c.getColumnIndex(StudentsProvider.GRADE)), Toast.LENGTH_LONG).show();
             }while (c.moveToNext());
         }
+    }
+
+    // 打开 weetgo.com
+    public void onBtnWeetGo(View v) {
+        String weetgo = "http://www.weetgo.com";
+        Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+        intent.putExtra(SearchManager.QUERY, weetgo);
+        startActivity(intent);
+    }
+
+    // 打开通信录
+    public void onBtnContact(View v) {
+        // 隐式Intent
+        Intent intent = new Intent();
+        // Action是Intent必须的，一般表现为字符串。Action很大程度上决定其他Intent如何被组织。
+        intent.setAction(Intent.ACTION_VIEW);
+        // Data用于给Intent的过滤器添加数据规格，规格可以是数据类型、或URI、或同时前两者。
+        // setData()只能URI，setType()只能类型，setDataAndType()两者。
+        intent.setData(ContactsContract.Contacts.CONTENT_URI);
+        startActivity(intent);
     }
 }
